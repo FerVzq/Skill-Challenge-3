@@ -1,6 +1,9 @@
 package com.metaphorce.SkillChallenge3.entidades;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "musica")
@@ -8,9 +11,14 @@ public class Musica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idMusica;
-    String nombre;
-    String duracion;
-    String artista;
+    @NotNull(message = "El nombre no puede ser nulo")
+    private String nombre;
+
+    @Size(message = "La duracion no puede ser mayor a 3 digitos")
+    private String duracion;
+
+    @NotBlank(message = "El artista es obligatorio")
+    private String artista;
 
     public int getIdMusica() {
         return idMusica;
